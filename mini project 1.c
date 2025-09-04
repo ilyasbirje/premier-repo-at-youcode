@@ -3,10 +3,10 @@
 
     int main() {
     //titre {//Le Journal d'Anne Frank
-//Le Rouge et le Noir de Stendhal
-//antigone
-//et Le Baron perché d'Italo Calvino
-//la boit a merveille}
+    //Le Rouge et le Noir de Stendhal
+    //antigone
+    //et Le Baron perché d'Italo Calvino
+    //la boit a merveille}
     //auteur
     //prix
     //quantité
@@ -21,7 +21,7 @@
     int i;
     int trouve = 0;
     char recherche[MAX];
-    char modif[MAX];
+    float  modif;
 start:
     printf("====================================\n");
     printf("      GESTION DU STOCK DE LIVRES     \n");
@@ -47,13 +47,13 @@ case 1:
     goto start;
     }
     printf("Entrer le nom livre : ");
-         scanf("%[^\n]", titre[nombre]);
+         scanf(" %s", titre[nombre]);
     printf("Entrer le nom de l'auteur : ");
-         scanf("%[^\n]", auteur[nombre]);
+         scanf(" %s", auteur[nombre]);
     printf("Le prix de livre : ");
-        scanf(" %f", &prix);
+        scanf(" %f", &prix[nombre]);
     printf("La quantité de livre : ");
-        scanf(" %f", &quantite);
+        scanf(" %f", &quantite[nombre]);
         nombre++;
     goto start;
 
@@ -87,26 +87,37 @@ case 3:
                 trouve = 0;
             }
         }
+                goto start;
+
 case 4:
+trouve = 0;
         if(nombre == 0) {
             printf("Aucune livre pour le modifier : \n");
             goto start;
         }
+printf("Entre le titre de livre pour changer son quantité : ");
+scanf(" %s", &recherche);
+
+for(int i = 0; i < nombre ;i++) {
+    if(strcmp(titre[i], recherche)==0) {
+    trouve = 1;
 printf("Cree une nouveau quantité :");
-scanf("%s", modif);
-for(int i = 0; i < nombre; i++) {
-    if(strcmp(titre[i], modif)==0) {
-printf("Ancien quantité : %.2f :\n", quantite);
-scanf(" %f", &quantite[i]);
-printf("Quantit mise a jour avec succes ! \n");
-trouve = 1;
-break;
-            }
-        }
-} 
-
-
-}if (!trouve/* !=contraire si = 1 alors trouve = 0*/){
+scanf("%f", &modif);
+    //afficher ancien quantiy
+    printf("Ancien quantité : %.2f \n", quantite[i]);
+    // modifier quantité[i] avec modif
+    quantite[i]=modif;
+    //affichr titre + nouveau quantite
+    printf("Le titre : %s & Nouveau Quantité %.2f", titre[i], quantite[i]);
+    
+    }
+}
+if(trouve == 0){
     printf("livre non trouver");
+}
+
+goto start;
+            
+} 
         return 0;
     }
