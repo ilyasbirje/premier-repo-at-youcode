@@ -21,13 +21,16 @@ float calculair(struct air a){
 int main() {
     
     struct air A ;
-A.longeur = 10;
-A.largeur = 5.5;
+    
+    printf("Longeur : ");
+    scanf("%f", &A.longeur);
+     printf("Longeur : ");
+    scanf("%f", &A.largeur);
 
     float air = calculair(A);
 
 
-printf("%2f", air);
+printf("%.2f", air);
     
     return 0;
 }
